@@ -2,33 +2,64 @@
 
 {% block content %}
 <div class="panel panel-default">
-  <div class="panel-heading clearfix">
-      <div class="pull-right">
-        {% for author in article.authors %}
-        <span class="label label-default" style="display: inline-block;">
-          <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-          <a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>
-        </span>
-        {% endfor %}
-        <span class="label label-default" style="display: inline-block;">
-          <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-          {{ article.locale_date }}
-        </span>
-      </div> <!-- /pull-right -->
-  </div> <!-- /panel-heading -->
   <div class="panel-body">
-    <h3>
+    <h2>
       <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark"
          title="Permalink to {{ article.title|striptags }}">
       {{ article.title }}
       </a>
-    </h3>
+    </h2>
+    <ul class="list-inline">
+      {% for author in article.authors %}
+      <li>
+        <small>
+          <i class="fa fa-user"></i>
+          <a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>
+        </small>
+      </li>
+      {% endfor %}
+      <li>
+        <abbr title="Published">
+          <small>
+            <i class="fa fa-calendar"></i>
+            {{ article.locale_date }}
+          </small>
+        </abbr>
+      </li>
+      {% if article.modified %}
+      <li>
+        <abbr title="Last modified">
+          <small>
+            <i class="fa fa-edit"></i>
+            {{ article.locale_modified }}
+          </small>
+        </abbr>
+      </li>
+      {% endif %}
+      <li>
+        <small>
+          <i class="fa fa-comments"></i>
+          <a href="{{ SITEURL }}/{{ article.url }}#disqus_thread"
+             data-disqus-identifier="{{ 'article-%s-%s'|format(article.slug, article.date|strftime('%m-%Y')) }}">
+            Comments
+          </a>
+        </small>
+      </li>
+    </ul>
+
     {% import 'translations.html' as translations with context %}
     {{ translations.translations_for(article) }}
+
     <div class="article-content">
     {{ article.content }}
     </div> <!-- /article-content -->
+
   </div> <!-- /panel-body -->
+  <ul class="list-group">
+    <li class="list-group-item">
+    {% include 'includes/comments.html' %}
+    </li>
+  </ul>
   <div class="panel-footer">Panel footer</div>
 </div> <!-- /panel -->
 {% endblock %}

@@ -1,0 +1,7 @@
+<ul class="nav nav-pills">
+{% for name, link in SOCIAL %}
+  {% set name_sanitized = name|lower|replace('+','-plus')|replace(' ','-') %}
+  {% set iconattributes = '"fa fa-' ~ name_sanitized ~ ' fa-lg"' %}
+  <li><a href="{{ link }}"><i class={{ iconattributes }}></i> {{ name }}</a></li>
+{% endfor %}
+</ul>

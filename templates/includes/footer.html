@@ -1,23 +1,30 @@
-<footer class="row">
-  <div class="large-12 columns">
-    <hr/>
-    <div class="row">
-      {% if articles %}
-        {% set copy_date = articles[0].date.strftime('%Y') %}
-      {% else %}
-        {% set copy_date = '' %}
-      {% endif %}
-      <div class="large-6 columns">
-        <p>&copy; Copyright {{ copy_date }} {{ AUTHOR }}</p>
-      </div>
-      <div class="large-6 columns">
-        <ul class="inline-list right">
-          <li><a href="#">Link 1</a></li>
-          <li><a href="#">Link 2</a></li>
-          <li><a href="#">Link 3</a></li>
-          <li><a href="#">Link 4</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</footer>
+      <footer class="footer">
+        <hr>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-3">
+              {% include "includes/social.html" %}
+            </div> <!-- /col -->
+            <div class="col-md-3">
+              <h4>Links</h4>
+              <ul class="nav nav-pills">
+              {% for title, link in LINKS %}
+                <li role="presentation">
+                  <a href="{{ link }}">{{ title }}</a>
+                </li>
+              {% endfor %}
+              </ul>
+            </div> <!-- /col -->
+            <div class="col-md-6">
+              <blockquote class="blockquote-reverse">
+                <p>Research is what I'm doing when I don't know what I'm doing.</p>
+                <footer>Wernher von Braun</footer>
+              </blockquote>
+            </div> <!-- /col -->
+          </div> <!-- /row -->
+          <div class="row">
+            <p>&copy; Company 2014</p>
+          </div> <!-- /row -->
+        </div> <!-- /container -->
+      </footer>
+  

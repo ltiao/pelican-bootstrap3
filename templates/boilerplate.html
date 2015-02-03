@@ -34,7 +34,8 @@
       {% endif %}
     {% endif %}
 
-    <link rel="stylesheet" href="{{ SITEURL }}/theme/css/main.css">
+    <link rel="stylesheet" href="{{ SITEURL }}/theme/css/{{ CSS_FILE }}">
+    
     {% block style %}
     <style type="text/css">
       body { 
@@ -42,6 +43,7 @@
       }
     </style>
     {% endblock style %}
+    
     <script src="{{ SITEURL }}/theme/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
   </head>
   <body>
